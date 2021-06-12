@@ -2,6 +2,7 @@ body {
     margin: 0;
     height: 100vh;
     width: 100%;
+    font-family: 'Delius Unicase', cursive;
 }
 
 #total-container {
@@ -15,13 +16,14 @@ body {
     justify-content: center;
     align-items: center;
     width: 95%;
-    background-color: red;
+    background-color: #CFCFEA;
     margin-top: 20px;
+    margin-bottom: 20px;
     flex-direction: column;
 }
 
 #title-container {
-    background-color: blue;
+    background-color: #CFCFEA;
     width: inherit;
     display: flex;
     justify-content: center;
@@ -39,12 +41,37 @@ body {
         "player1 game game player2"
         "player1 game game player2"
     ;
-    height: 600px;
+    height: 40vw;
     width: inherit;
+    margin-bottom: 20px;
 }
 
 .selection {
-    background-color: yellow;
+    background-color: #2A2C24;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: 1.25rem;
+    text-decoration: underline;
+    color: white;
+}
+
+.buttons-container {
+    display: flex;
+}
+
+.button {
+    margin: 20px;
+}
+
+button {
+    border-radius: 10px;
+    padding: 20px;
+    border-style: none;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    font-size: 20px;
+    font-weight: 800;
 }
 
 #player1-selection {
@@ -53,8 +80,19 @@ body {
 
 #game-board {
     grid-area: game;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 #player2-selection {
     grid-area: player2;
+}
+
+.game-space {
+    background-color: white;
+    border: 1px solid #333;
+}
+
+#player-title {
+    margin:20px
 }
