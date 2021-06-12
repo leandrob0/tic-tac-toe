@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+}
+
+#total-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    background-color: red;
+    margin-top: 20px;
+    flex-direction: column;
+}
+
+#title-container {
+    background-color: blue;
+    width: inherit;
+    display: flex;
+    justify-content: center;
+    height: 150px;
+    align-items: center;
+}
+
+#title {
+    font-size: 2rem;
+}
+
+#game {
+    display: grid;
+    grid-template-areas: 
+        "player1 game game player2"
+        "player1 game game player2"
+    ;
+    height: 600px;
+    width: inherit;
+}
+
+.selection {
+    background-color: yellow;
+}
+
+#player1-selection {
+    grid-area: player1;
+}
+
+#game-board {
+    grid-area: game;
+}
+
+#player2-selection {
+    grid-area: player2;
+}
