@@ -15,7 +15,7 @@ function createGrid(event) {
 createGrid();
 
 
-//Board
+//Board ########################################
 const myBoard = (function() {
     
     let gameBoard = [
@@ -49,11 +49,40 @@ const myBoard = (function() {
         Array.from(divs).forEach(div => div.addEventListener("click", returnDiv));
     }
 
-    return {showGameBoard};
+    return {gameBoard, showGameBoard};
    
 })();
 
-//Player object
+//CONTROLS THE GAME FLOW ########################################
+const controlTheGame = (function() {
+    function checkWinner(board) {
+        myBoard.gameBoard; // se lo paso por parametro.
+    } 
+
+    function checkSpaceAvailable(position,board) {
+        if(position < 3) {
+            if(board[0][position] == "") {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else if(position > 2 && position < 6) {
+            if(board[1][position - 3] == "") {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else if(position > 5) {
+            if(board[2][position - 6] == "") {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+    }
+})
+
+//Player object ########################################
 const playerFactory = (name, mark) => {
     const getName  = () => name;
     const getMark = () => mark;
@@ -64,3 +93,7 @@ const playerFactory = (name, mark) => {
 myBoard.showGameBoard();
   
 const Player1 = playerFactory("Player 1", "X");
+
+//EVENT LISTENER FOR THE MARK SELECTION
+const marksButtons = document.querySelectorAll(".player-mark");
+let arrayButtons = Array.from(marksButtons);

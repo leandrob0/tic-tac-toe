@@ -20,16 +20,26 @@
                     <div id="player1-selection" class="selection">
                         <h3 class="player-title">Player 1</h3>
                         <div class="buttons-container">
-                            <div class="button"><button>X</button></div>
-                            <div class="button"><button>O</button></div>
+                            <div class="radio-toolbar">
+                                <input type="radio" id="P1radioX" name="radioMark1" value="cross" checked>
+                                <label for="P1radioX">X</label>
+                            
+                                <input type="radio" id="P1radioO" name="radioMark1" value="circle">
+                                <label for="P1radioO">O</label>
+                            </div>
                         </div>
                     </div>
                     <div id="game-board"></div>
                     <div id="player2-selection" class="selection">
                         <h3 class="player-title">Player 2</h3>
                         <div class="buttons-container">
-                            <div class="button"><button>X</button></div>
-                            <div class="button"><button>O</button></div>
+                            <div class="radio-toolbar">
+                                <input type="radio" id="radioX" name="radioMark" value="cross">
+                                <label for="radioX">X</label>
+                            
+                                <input type="radio" id="radioO" name="radioMark" value="circle" checked>
+                                <label for="radioO">O</label>
+                            </div>
                         </div>
                     </div>
                 </div>
