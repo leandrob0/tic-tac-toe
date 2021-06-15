@@ -29,6 +29,7 @@ body {
     justify-content: center;
     height: 150px;
     align-items: center;
+    flex-direction: column;
 }
 
 #title {
@@ -132,4 +133,13 @@ button {
 
 .radio-toolbar input[type="radio"]:focus + label {
     border: 2px dashed #444;
+}
+
+#start-button {
+    padding:10px;
+}
+
+#start-button:hover {
+    cursor: pointer;
+    box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.2);
 }
