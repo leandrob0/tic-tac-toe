@@ -59,15 +59,22 @@ const myBoard = (function() {
 
         showGameBoard();
 
-        (game.checkWinner(gameBoard) == 1) ? playerWon = 1 : 
-        (game.checkWinner(gameBoard) == 2) ? playerWon = 2 : playerWon = 0;
+        if(game.checkWinner(gameBoard) == 1){
+            playerWon = 1;
+        } else if(game.checkWinner(gameBoard) == 2) {
+            playerWon = 2;
+        } else {
+            playerWon = 0;
+        }
         
         if(game.announceWinner(playerWon) === true) {
+            console.log(playerWon);
+            showResult(playerWon);
             removeFunctionality();
         }
 
         if(game.checkIfFull(gameBoard) == 1 && (playerWon !== 1 || playerWon !== 2)) {
-            console.log("draw");
+            showResult(playerWon);
             removeFunctionality();
         }
     }
@@ -90,6 +97,41 @@ const myBoard = (function() {
         let arrayDivs = Array.from(divs);
         arrayDivs.forEach(div => div.removeEventListener("click", returnDiv));
     }
+
+    function showResult(playerWon) {
+        const textAnnounce = document.querySelector("#title");
+
+        let text;
+
+        (playerWon == 1) ? text = "Player 1 WON!" : (playerWon == 2) ? text = "Player 2 WON!" : text="DRAW!";
+
+        textAnnounce.textContent = text;
+        startGame.textContent = "Reset game";
+
+        startGame.addEventListener("click", resetGame);
+        startGame.addEventListener("click", enableInputs);
+    }
+
+    function resetGame() {
+        const textAnnounce = document.querySelector("#title");
+
+        playerTurn = 1;
+
+        gameBoard = [
+            ["","",""],
+            ["","",""],
+            ["","",""]
+        ];
+
+        startGame.textContent = "Start game";
+        textAnnounce.textContent = "TIC TAC TOE!";
+
+        startGame.addEventListener("click", myBoard.addFunctionality());
+        startGame.addEventListener("click", getRadioValues);
+
+        showGameBoard();
+    }
+
 
     return {gameBoard, showGameBoard, addFunctionality};
    
@@ -125,7 +167,7 @@ const game = (function() {
         }
         const allEqual = arr => arr.every(v => v === arr[0] && v !== "");
         if(allEqual(arrayResult)) {
-            if(arrayResult[0] == Player1.getMark) {
+            if(arrayResult[0] == Player1.getMark()) {
                 return 1;
             } else {
                 return 2;
@@ -141,7 +183,7 @@ const game = (function() {
             counter--;
         }
         if(allEqual(arrayResult)) {
-            if(arrayResult[0] == Player1.getMark) {
+            if(arrayResult[0] == Player1.getMark()) {
                 return 1;
             } else {
                 return 2;
@@ -258,3 +300,11 @@ const startGame = document.querySelector("#start-button");
 startGame.addEventListener("click", getRadioValues);
 startGame.addEventListener("click", disableInputs);
 startGame.addEventListener("click", myBoard.addFunctionality());
+
+function enableInputs() {
+    var getInputsP2 = document.querySelectorAll('input[name="radioMark"]');
+    var getInputsP1 = document.querySelectorAll('input[name="radioMark1"]'); 
+
+    Array.from(getInputsP2).forEach(element => element.disabled = false);
+    Array.from(getInputsP1).forEach(element => element.disabled = false);
+}
