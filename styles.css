@@ -28,7 +28,7 @@ body {
     width: inherit;
     display: flex;
     justify-content: center;
-    height: 150px;
+    height: 10vw;
     align-items: center;
     flex-direction: column;
 }
