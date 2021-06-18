@@ -14,6 +14,8 @@ function createGrid(event) {
 
 createGrid();
 
+const p1wins = document.querySelector("#p1-wins");
+const p2wins = document.querySelector("#p2-wins");
 
 //Board ########################################
 const myBoard = (function() {
@@ -68,7 +70,6 @@ const myBoard = (function() {
         }
         
         if(game.announceWinner(playerWon) === true) {
-            console.log(playerWon);
             showResult(playerWon);
             removeFunctionality();
         }
@@ -104,15 +105,27 @@ const myBoard = (function() {
         let text;
 
         (playerWon == 1) ? text = "Player 1 WON!" : (playerWon == 2) ? text = "Player 2 WON!" : text="DRAW!";
+        
+        if(playerWon == 1)
+        {
+            p1wins.textContent = parseFloat(p1wins.textContent) + 1;
+        } else if(playerWon == 2) {
+            p2wins.textContent = parseFloat(p2wins.textContent) + 1;
+        } else {
+            p1wins.textContent = parseFloat(p1wins.textContent) + 0.5; 
+            p2wins.textContent = parseFloat(p2wins.textContent) + 0.5;
+        }
 
         textAnnounce.textContent = text;
         startGame.textContent = "Reset game";
 
         startGame.addEventListener("click", resetGame);
-        startGame.addEventListener("click", enableInputs);
     }
 
     function resetGame() {
+        enableInputs();
+        startGame.removeEventListener("click", resetGame);
+        startGame.addEventListener("click", restartGame);
         const textAnnounce = document.querySelector("#title");
 
         playerTurn = 1;
@@ -125,9 +138,6 @@ const myBoard = (function() {
 
         startGame.textContent = "Start game";
         textAnnounce.textContent = "TIC TAC TOE!";
-
-        startGame.addEventListener("click", myBoard.addFunctionality());
-        startGame.addEventListener("click", getRadioValues);
 
         showGameBoard();
     }
@@ -297,9 +307,11 @@ function disableInputs() {
 }
 
 const startGame = document.querySelector("#start-button");
-startGame.addEventListener("click", getRadioValues);
-startGame.addEventListener("click", disableInputs);
-startGame.addEventListener("click", myBoard.addFunctionality());
+function restartGame() {
+    getRadioValues();
+    disableInputs();
+    myBoard.addFunctionality();
+}
 
 function enableInputs() {
     var getInputsP2 = document.querySelectorAll('input[name="radioMark"]');
@@ -308,3 +320,5 @@ function enableInputs() {
     Array.from(getInputsP2).forEach(element => element.disabled = false);
     Array.from(getInputsP1).forEach(element => element.disabled = false);
 }
+
+startGame.addEventListener("click",restartGame);
